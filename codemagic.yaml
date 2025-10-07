@@ -1,0 +1,20 @@
+workflows:
+  ios-release:
+    name: iOS Release Workflow
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter pub get
+      - name: Build iOS release
+        script: |
+          flutter build ios --release --no-codesign
+    artifacts:
+      - build/ios/iphoneos/Runner.app
+      - build/ios/iphoneos/Runner.app.dSYM
+      - build/ios/iphoneos/Runner.ipa
+
